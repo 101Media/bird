@@ -1,6 +1,6 @@
 <?php
 
-namespace Media101\Bird\Supports\Notifications\SMS\Utils;
+namespace Media101\Bird\Services\Notifications\SMS\Utils;
 
 enum SMSType: string
 {

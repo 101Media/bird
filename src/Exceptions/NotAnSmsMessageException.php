@@ -3,7 +3,7 @@
 namespace Media101\Bird\Exceptions;
 
 use Exception;
-use Media101\Bird\Supports\Notifications\SMS\SMSMessage;
+use Media101\Bird\Services\Notifications\SMS\SMSMessage;
 
 class NotAnSmsMessageException extends Exception
 {

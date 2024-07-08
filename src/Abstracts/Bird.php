@@ -42,10 +42,10 @@ abstract class Bird
     protected static function endpoint(string $path = null): string
     {
         $apiEndpoint = self::$apiEndpoint;
-        $workspaceID = config('bird.workspace_Id');
+        $workspaceID = config('bird.workspace_id');
 
         if (! $workspaceID) {
-            throw InvalidParameterException::configValueIsNotSet('bird.workspace_Id');
+            throw InvalidParameterException::configValueIsNotSet('bird.workspace_id');
         }
 
         $endpoint = "$apiEndpoint/workspaces/$workspaceID";

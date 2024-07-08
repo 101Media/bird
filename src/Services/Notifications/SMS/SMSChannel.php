@@ -1,6 +1,6 @@
 <?php
 
-namespace Media101\Bird\Supports\Notifications\SMS;
+namespace Media101\Bird\Services\Notifications\SMS;
 
 
 use Illuminate\Http\Client\ConnectionException;

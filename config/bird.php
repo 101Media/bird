@@ -11,7 +11,7 @@ return [
      * Workspace ID for bird.com.
      * This ID identifies your workspace in bird.com.
      */
-    'workspace_Id' => env('BIRD_WORKSPACE_ID'),
+    'workspace_id' => env('BIRD_WORKSPACE_ID'),
 
     /*
      * Channels configuration for bird.com notifications.

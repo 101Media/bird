@@ -1,6 +1,6 @@
 <?php
 
-namespace Media101\Bird\Supports\Contacts;
+namespace Media101\Bird\Services\Contacts;
 
 
 use Media101\Bird\Exceptions\InvalidParameterException;
