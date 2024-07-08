@@ -15,7 +15,6 @@ composer require media101/bird
 After installing the package, you need to publish the configuration file:
 
 ```bash
-php artisan vendor:publish --provider="Media101\Bird\BirdServiceProvider"
 php artisan vendor:publish --tag="bird-config"
 ```
 
