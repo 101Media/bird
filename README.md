@@ -9,7 +9,7 @@ This package provides seamless integration with the Bird.com API, allowing you t
 You can install the package via composer:
 
 ```bash
-composer require media101/bird
+composer require 101media/bird
 ```
 
 After installing the package, you need to publish the configuration file:
