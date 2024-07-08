@@ -1,5 +1,6 @@
 {
     "name": "101media/bird",
+    "version": "1.0.0",
     "description": "This package allows you to connect to bird's api using Laravel",
     "keywords": [
         "101media",
