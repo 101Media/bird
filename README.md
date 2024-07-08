@@ -1,92 +1,161 @@
-# Bird for Laravel
+# Bird.com Laravel Package
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+## Introduction
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+This package provides seamless integration with the Bird.com API, allowing you to manage contacts and send notifications via SMS.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require media101/bird
 ```
 
-You can publish and run the migrations with:
+After installing the package, you need to publish the configuration file:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
+php artisan vendor:publish --provider="Media101\Bird\BirdServiceProvider"
+php artisan vendor:publish --tag="bird-config"
 ```
 
-You can publish the config file with:
+## Configuration
 
-```bash
-php artisan vendor:publish --tag=":package_slug-config"
+After publishing the configuration file, you need to set the following environment variables in your `.env` file:
+
+```env
+BIRD_ACCESS_KEY={--your-access-key--}
+BIRD_WORKSPACE_ID={--your-workspace-id--}
+BIRD_SMS_CHANNEL_ID={--your-sms-channel-id--}
 ```
 
-This is the contents of the published config file:
+All the configuration keys are available in `config/bird.php`
 
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
-```
 
 ## Usage
 
+### Contact Management
+
+#### Retrieve Contacts
+
+To retrieve contacts from the API, you can use the `get` method of `ContactManager`:
+
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+use Media101\Bird\Services\Contacts\ContactManager;
+
+$contacts = ContactManager::get(); // Retrieve all contacts with default settings
 ```
 
-## Testing
+You can also retrieve a specific contact by ID:
 
-```bash
-composer test
+```php
+$contact = ContactManager::get('contact-id');
 ```
 
-## Changelog
+Additional parameters can be provided to customize the query:
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+```php
+$contacts = ContactManager::get(null, 20, true, 'nextPageToken');
+```
+
+#### Create or Update Contacts
+
+To create or update a contact, use the `createOrUpdate` method:
+
+```php
+use Media101\Bird\Services\Contacts\BirdContact;
+use Media101\Bird\Services\Contacts\ContactManager;
+
+$contact = (new BirdContact())
+    ->name('John Doe')
+    ->phone('+12345678901')
+    ->email('john.doe@example.com');
+
+$response = ContactManager::createOrUpdate($contact);
+```
+
+You can specify the identifier key (default is `phonenumber`):
+
+```php
+$response = ContactManager::createOrUpdate($contact, 'emailaddress');
+```
+
+#### Delete Contacts
+
+To delete a contact, use the `delete` method:
+
+```php
+$response = ContactManager::delete('contact-id');
+```
+
+### Notifications
+
+#### Sending SMS Notifications
+
+At the moment this package only suppots sending SMS notifications with `text` type only. To send SMS notifications, you need to use the `SMSChannel` class. This class handles sending SMS notifications via Bird.com.
+
+First, create a notification class that returns an instance of `SMSMessage` class:
+
+```php
+namespace App\Notifications;
+
+use Media101\Bird\Services\Contacts\BirdContact;
+use Media101\Bird\Services\Notifications\SMS\SMSMessage;
+
+class OrderReceived
+{
+
+    public function __construct(
+        private string $content
+    ) {}
+    
+    public function via($notifiable): array
+    {
+        return [SMSChannel::class];
+    }
+
+    public function toSMS(User $notifiable): array
+    {
+        // The phone number must have a country code appended.
+        $contact = (new BirdContact())->phone($notifiable->phone_number);
+        
+        return (new SMSMessage())
+            ->to($contact)
+            ->type(SMSType::TEXT)
+            ->text($this->content);
+    }
+    
+}
+```
+Finally, notify the notifiable entity:
+
+```php
+$user->notify(new OrderReceived('Your order has been received'));
+```
+
+## Exception Handling
+
+The package uses custom exceptions to handle errors:
+
+- `InvalidParameterException`: Thrown when a parameter is invalid.
+- `ConnectionException`: Thrown when there is a connection error with the API.
+- `NotAnSmsMessageException`: Thrown when the provided message is not an instance of `SMSMessage`.
+- `NotificationNotSent`: Thrown when the notification could not be sent.
+
+Make sure to catch these exceptions in your code to handle errors gracefully.
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
-## Credits
-
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](../../contributors)
+Please submit issues and pull requests to the [GitHub repository](https://github.com/media101/bird).
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+This package is open-sourced software licensed under the [MIT license](LICENSE).
+
+## Contact
+
+For any inquiries or support, please contact [Media101](mailto:support@media101.com).
+
+---
+
+This README now includes sections for both `SMSChannel` and `SMSMessage`, as well as the existing contact management functionality. If you have any more classes or details to add, let me know!
