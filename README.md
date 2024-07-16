@@ -9,7 +9,7 @@ This package provides seamless integration with the Bird.com API, allowing you t
 You can install the package via composer:
 
 ```bash
-composer require media101/bird
+composer require 101media/bird
 ```
 
 After installing the package, you need to publish the configuration file:
@@ -145,7 +145,7 @@ Make sure to catch these exceptions in your code to handle errors gracefully.
 
 ## Contributing
 
-Please submit issues and pull requests to the [GitHub repository](https://github.com/media101/bird).
+Please submit issues and pull requests to the [GitHub repository](https://github.com/101media/bird).
 
 ## License
 
@@ -153,7 +153,7 @@ This package is open-sourced software licensed under the [MIT license](LICENSE).
 
 ## Contact
 
-For any inquiries or support, please contact [Media101](mailto:support@media101.com).
+For any inquiries or support, please contact [101Media](mailto:webapps@101media.com).
 
 ---
 
