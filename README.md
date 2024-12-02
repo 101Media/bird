@@ -153,7 +153,7 @@ This package is open-sourced software licensed under the [MIT license](LICENSE).
 
 ## Contact
 
-For any inquiries or support, please contact [101Media](mailto:webapps@101media.com).
+For any inquiries or support, please contact [101Media](mailto:webapps@101media.nl).
 
 ---
 
