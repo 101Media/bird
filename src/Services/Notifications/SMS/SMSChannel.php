@@ -25,7 +25,10 @@ class SMSChannel extends Bird
      */
     public function send(mixed $notifiable, Notification $notification): void
     {
-        /** @var SMSMessage $message */
+        /**
+         * @var SMSMessage $message
+         * @phpstan-ignore-next-line
+         */
         $message = $notification->toSMS($notifiable);
 
         if (! $this->isSmsMessage($message)) {
