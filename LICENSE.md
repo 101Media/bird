@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 101media <abrar@101media.nl>
+Copyright (c) 101media <webapps@101media.nl>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

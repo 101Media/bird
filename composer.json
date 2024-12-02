@@ -11,9 +11,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Abrar Suleiman",
-            "email": "abrar@101media.nl",
-            "role": "Developer"
+            "name": "101Media",
+            "email": "webapps@101media.nl"
         }
     ],
     "require": {
