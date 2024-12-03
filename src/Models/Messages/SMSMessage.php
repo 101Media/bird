@@ -7,12 +7,10 @@ use Media101\Bird\Enums\ChannelType;
 use Media101\Bird\Enums\IdentifierKey;
 use Media101\Bird\Enums\MessageType;
 use Media101\Bird\Models\Contact;
-use Override;
 
 class SMSMessage extends Message implements IsBirdMessage
 {
     public ChannelType $viaChannel = ChannelType::SMS;
-
     public MessageType $messageType = MessageType::TEXT;
 
     public function toContact(Contact $contact): static

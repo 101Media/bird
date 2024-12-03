@@ -22,7 +22,7 @@ trait BirdConnection
         }
 
         return [
-            'Content-Type' => 'application/json',
+            'Content-Type'  => 'application/json',
             'Authorization' => "Bearer $accessKey",
         ];
     }
@@ -35,7 +35,7 @@ trait BirdConnection
      * @param string|null $path
      * @return string
      */
-    protected function endpoint(string $path = null): string
+    protected function endpoint(?string $path = null): string
     {
         $apiEndpoint =  'https://api.bird.com';
         $workspaceID = config('bird.workspace_id');

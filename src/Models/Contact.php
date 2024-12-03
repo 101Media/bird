@@ -82,7 +82,7 @@ class Contact
     {
         $identifier = collect($this->identifiers)->firstWhere('key', IdentifierKey::EMAIL_ADDRESS->value);
 
-        return $identifier['value']?? null;
+        return $identifier['value'] ?? null;
     }
 
     /**
@@ -96,7 +96,7 @@ class Contact
     /**
      * Get the contact as an array or object
      */
-    public function toArray(): array|object
+    public function toArray(): array | object
     {
         return [
             'displayName' => $this->displayName,
@@ -113,6 +113,6 @@ class Contact
     {
         $phoneRegex = config('bird.phone_number_regex');
 
-        return !$phoneRegex || preg_match($phoneRegex, $phoneNumber) === 1;
+        return ! $phoneRegex || preg_match($phoneRegex, $phoneNumber) === 1;
     }
 }

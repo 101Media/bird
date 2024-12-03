@@ -39,6 +39,8 @@ class SMSChannel implements IsNotificationChannel
     }
 
     /**
+     * Send the notification
+     *
      * @throws ConnectionException
      * @throws NotificationNotSent
      * @throws InvalidParameterException
