@@ -2,8 +2,6 @@
 
 # Bird.com API Support for Laravel
 
---- 
-
 1. [Introduction](#overview)
     - [Why This Package?](#why-this-package)
 2. [Installation](#installation)
