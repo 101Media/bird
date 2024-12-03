@@ -7,13 +7,14 @@ use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class BirdServiceProvider extends PackageServiceProvider
 {
+    /**
+     * This class is a Package Service Provider
+     *
+     * More info: https://github.com/spatie/laravel-package-tools
+     */
+    #[\Override]
     public function configurePackage(Package $package): void
     {
-        /**
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('bird')
             ->hasConfigFile();

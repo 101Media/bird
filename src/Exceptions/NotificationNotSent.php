@@ -4,7 +4,7 @@ namespace Media101\Bird\Exceptions;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Media101\Bird\Services\Notifications\SMS\SMSMessage;
+use Media101\_src\Services\Notifications\SMS\SMSMessage;
 
 class NotificationNotSent extends Exception
 {

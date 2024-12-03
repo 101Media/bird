@@ -1,14 +1,15 @@
 <?php
 
-namespace Media101\Bird\Abstracts;
+namespace Media101\Bird\Contracts;
 
-
+use GuzzleHttp\Promise\PromiseInterface;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Http;
 use Media101\Bird\Exceptions\InvalidParameterException;
 
-abstract class Bird
+trait BirdConnection
 {
-    protected static string $apiEndpoint = 'https://api.bird.com';
-
     /**
      * Generates the headers required for API requests to the Bird platform.
      *
@@ -16,7 +17,7 @@ abstract class Bird
      *
      * @return array The headers for Bird API
      */
-    protected static function headers(): array
+    protected function headers(): array
     {
         $accessKey = config('bird.access_key');
 
@@ -25,11 +26,10 @@ abstract class Bird
         }
 
         return [
-            'Content-Type' => 'application/json',
+            'Content-Type'  => 'application/json',
             'Authorization' => "Bearer $accessKey",
         ];
     }
-
 
     /**
      * This method generates the API endpoint URL for the Bird platform. \
@@ -39,9 +39,9 @@ abstract class Bird
      * @param string|null $path
      * @return string
      */
-    protected static function endpoint(string $path = null): string
+    protected function endpoint(?string $path = null): string
     {
-        $apiEndpoint = self::$apiEndpoint;
+        $apiEndpoint =  'https://api.bird.com';
         $workspaceID = config('bird.workspace_id');
 
         if (! $workspaceID) {
@@ -53,5 +53,17 @@ abstract class Bird
         return $path
             ? "$endpoint/$path"
             : $endpoint;
+    }
+
+    /**
+     * Make the post-request to Bird.com to create the message.
+     *
+     * @throws InvalidParameterException
+     * @throws ConnectionException
+     */
+    protected function birdRequest(string $url, ?array $params = null, string $method = 'post'): PromiseInterface | Response
+    {
+        return Http::withHeaders($this->headers())
+            ->{$method}($url, $params);
     }
 }
