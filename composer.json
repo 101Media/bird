@@ -1,5 +1,5 @@
 {
-    "name": "101media/bird",
+    "name": "101media/bird-local",
     "description": "This package allows you to connect to Bird's API using Laravel",
     "keywords": [
         "101media",
@@ -67,10 +67,7 @@
         "laravel": {
             "providers": [
                 "Media101\\Bird\\BirdServiceProvider"
-            ],
-            "aliases": {
-                "Bird": "Media101\\Bird\\Facades\\Bird"
-            }
+            ]
         }
     },
     "minimum-stability": "stable",

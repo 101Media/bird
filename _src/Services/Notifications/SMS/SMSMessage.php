@@ -1,10 +1,10 @@
 <?php
 
-namespace Media101\Bird\Services\Notifications\SMS;
+namespace Media101\_src\Services\Notifications\SMS;
 
 
-use Media101\Bird\Services\Contacts\BirdContact;
-use Media101\Bird\Services\Notifications\SMS\Utils\SMSType;
+use Media101\_src\Services\Contacts\BirdContact;
+use Media101\_src\Services\Notifications\SMS\Utils\SMSType;
 
 class SMSMessage
 {

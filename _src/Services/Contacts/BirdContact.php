@@ -1,9 +1,9 @@
 <?php
 
-namespace Media101\Bird\Services\Contacts;
+namespace Media101\_src\Services\Contacts;
 
 
-use Media101\Bird\Exceptions\InvalidParameterException;
+use Media101\_src\Exceptions\InvalidParameterException;
 
 class BirdContact
 {
@@ -40,12 +40,13 @@ class BirdContact
     }
 
 
+    // done
     public function getName(): string
     {
         return $this->displayName;
     }
 
-
+// done
     public function name(string $name): static
     {
         $this->displayName = $name;
@@ -53,7 +54,7 @@ class BirdContact
         return $this;
     }
 
-
+// done
     public function getEmail(): ?string
     {
         $identifier = collect($this->identifiers)->firstWhere('key', 'emailaddress');

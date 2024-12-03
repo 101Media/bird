@@ -1,6 +1,6 @@
 <?php
 
-namespace Media101\Bird\Exceptions;
+namespace Media101\_src\Exceptions;
 
 use Exception;
 use Illuminate\Support\Facades\Log;

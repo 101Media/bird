@@ -1,14 +1,14 @@
 <?php
 
-namespace Media101\Bird\Services\Contacts;
+namespace Media101\_src\Services\Contacts;
 
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use Media101\Bird\Abstracts\Bird;
-use Media101\Bird\Exceptions\InvalidParameterException;
+use Media101\_src\Abstracts\Bird;
+use Media101\_src\Exceptions\InvalidParameterException;
 
 /**
  * Class BirdContacts

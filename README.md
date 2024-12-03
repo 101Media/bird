@@ -40,7 +40,7 @@ All the configuration keys are available in `config/bird.php`
 To retrieve contacts from the API, you can use the `get` method of `ContactManager`:
 
 ```php
-use Media101\Bird\Services\Contacts\ContactManager;
+use Media101\_src\Services\Contacts\ContactManager;
 
 $contacts = ContactManager::get(); // Retrieve all contacts with default settings
 ```
@@ -62,8 +62,8 @@ $contacts = ContactManager::get(null, 20, true, 'nextPageToken');
 To create or update a contact, use the `createOrUpdate` method:
 
 ```php
-use Media101\Bird\Services\Contacts\BirdContact;
-use Media101\Bird\Services\Contacts\ContactManager;
+use Media101\_src\Services\Contacts\BirdContact;
+use Media101\_src\Services\Contacts\ContactManager;
 
 $contact = (new BirdContact())
     ->name('John Doe')
@@ -98,8 +98,8 @@ First, create a notification class that returns an instance of `SMSMessage` clas
 ```php
 namespace App\Notifications;
 
-use Media101\Bird\Services\Contacts\BirdContact;
-use Media101\Bird\Services\Notifications\SMS\SMSMessage;
+use Media101\_src\Services\Contacts\BirdContact;
+use Media101\_src\Services\Notifications\SMS\SMSMessage;
 
 class OrderReceived
 {

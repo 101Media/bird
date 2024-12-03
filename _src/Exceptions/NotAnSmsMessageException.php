@@ -1,9 +1,9 @@
 <?php
 
-namespace Media101\Bird\Exceptions;
+namespace Media101\_src\Exceptions;
 
 use Exception;
-use Media101\Bird\Services\Notifications\SMS\SMSMessage;
+use Media101\_src\Services\Notifications\SMS\SMSMessage;
 
 class NotAnSmsMessageException extends Exception
 {

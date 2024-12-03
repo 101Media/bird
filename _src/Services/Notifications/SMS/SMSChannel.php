@@ -1,15 +1,14 @@
 <?php
 
-namespace Media101\Bird\Services\Notifications\SMS;
-
+namespace Media101\_src\Services\Notifications\SMS;
 
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Http;
-use Media101\Bird\Abstracts\Bird;
-use Media101\Bird\Exceptions\InvalidParameterException;
-use Media101\Bird\Exceptions\NotAnSmsMessageException;
-use Media101\Bird\Exceptions\NotificationNotSent;
+use Media101\_src\Abstracts\Bird;
+use Media101\_src\Exceptions\InvalidParameterException;
+use Media101\_src\Exceptions\NotAnSmsMessageException;
+use Media101\_src\Exceptions\NotificationNotSent;
 
 class SMSChannel extends Bird
 {

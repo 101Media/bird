@@ -1,14 +1,11 @@
 <?php
 
-namespace Media101\Bird\Abstracts;
-
+namespace Media101\Bird\Contracts;
 
 use Media101\Bird\Exceptions\InvalidParameterException;
 
-abstract class Bird
+trait BirdConnection
 {
-    protected static string $apiEndpoint = 'https://api.bird.com';
-
     /**
      * Generates the headers required for API requests to the Bird platform.
      *
@@ -16,7 +13,7 @@ abstract class Bird
      *
      * @return array The headers for Bird API
      */
-    protected static function headers(): array
+    public function headers(): array
     {
         $accessKey = config('bird.access_key');
 
@@ -30,7 +27,6 @@ abstract class Bird
         ];
     }
 
-
     /**
      * This method generates the API endpoint URL for the Bird platform. \
      * It retrieves the workspace ID from the application's configuration and throws an exception if it's not set.
@@ -39,9 +35,9 @@ abstract class Bird
      * @param string|null $path
      * @return string
      */
-    protected static function endpoint(string $path = null): string
+    protected function endpoint(string $path = null): string
     {
-        $apiEndpoint = self::$apiEndpoint;
+        $apiEndpoint =  'https://api.bird.com';
         $workspaceID = config('bird.workspace_id');
 
         if (! $workspaceID) {
