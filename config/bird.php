@@ -28,6 +28,12 @@ return [
          * This channel ID is optional. Leave empty if WhatsApp notifications are not used.
          */
         'whatsapp' => env('BIRD_WHATSAPP_CHANNEL_ID'),
+
+        /*
+         * Email channel ID for bird.com notifications.
+         * This channel ID is optional. Leave empty if email notifications are not used.
+         */
+        'email' => env('BIRD_EMAIL_CHANNEL_ID')
     ],
 
     /*

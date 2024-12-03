@@ -2,6 +2,10 @@
 
 namespace Media101\Bird\Contracts;
 
+use GuzzleHttp\Promise\PromiseInterface;
+use Illuminate\Http\Client\ConnectionException;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Facades\Http;
 use Media101\Bird\Exceptions\InvalidParameterException;
 
 trait BirdConnection
@@ -13,7 +17,7 @@ trait BirdConnection
      *
      * @return array The headers for Bird API
      */
-    public function headers(): array
+    protected function headers(): array
     {
         $accessKey = config('bird.access_key');
 
@@ -49,5 +53,17 @@ trait BirdConnection
         return $path
             ? "$endpoint/$path"
             : $endpoint;
+    }
+
+    /**
+     * Make the post-request to Bird.com to create the message.
+     *
+     * @throws InvalidParameterException
+     * @throws ConnectionException
+     */
+    protected function birdPostRequest(string $url, ?array $params = null): PromiseInterface | Response
+    {
+        return Http::withHeaders($this->headers())
+            ->post($url, $params);
     }
 }

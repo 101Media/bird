@@ -15,15 +15,6 @@ class SMSChannel implements IsNotificationChannel
 {
     use BirdConnection;
 
-    public function getMessage(Notification $notification)
-    {
-        if (! method_exists($notification, 'toSMS')) {
-            throw new \InvalidArgumentException('Notification does not implement toSMS method');
-        }
-
-        return $notification->toSMS($notification);
-    }
-
     /**
      * @throws InvalidParameterException
      */
@@ -38,6 +29,15 @@ class SMSChannel implements IsNotificationChannel
         return $this->endpoint("channels/$channelID/messages");
     }
 
+    public function getMessage(Notification $notification)
+    {
+        if (! method_exists($notification, 'toSMS')) {
+            throw new \InvalidArgumentException('Notification does not implement toSMS method');
+        }
+
+        return $notification->toSMS($notification);
+    }
+
     /**
      * Send the notification
      *
@@ -50,8 +50,7 @@ class SMSChannel implements IsNotificationChannel
         /** @var SMSMessage $message */
         $message = $this->getMessage($notification);
 
-        $response = Http::withHeaders($this->headers())
-            ->post($this->channelEndpoint(), $message->toArray());
+        $response = $this->birdPostRequest($this->channelEndpoint(), $message->toArray());
 
         if (! $response->accepted()) {
             throw NotificationNotSent::notificationType(
