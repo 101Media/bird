@@ -1,4 +1,10 @@
-1. [Introduction](#laravel-bird-package)
+![image](https://repository-images.githubusercontent.com/820425309/723992d8-e187-420a-8bb6-b23c2991b8ca)
+
+# Bird.com API Support for Laravel
+
+--- 
+
+1. [Introduction](#overview)
     - [Why This Package?](#why-this-package)
 2. [Installation](#installation)
     - [Prerequisites](#prerequisites)
@@ -19,8 +25,8 @@
 7. [License](#license)
 8. [Contact](#contact)
 
-![image](https://repository-images.githubusercontent.com/820425309/723992d8-e187-420a-8bb6-b23c2991b8ca)
 
+## Overview
 The Laravel Bird Package simplifies integrating the powerful MessageBird API into your Laravel applications. 
 It provides a user-friendly way to manage contacts and send notifications via SMS, WhatsApp, email, and more. 
 This package is designed to make communication between [Laravel](https://laravel.com) and [Bird](https://bird.com)
