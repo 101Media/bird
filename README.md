@@ -68,9 +68,8 @@ The `config/bird.php` file contains all configurable options, including:
 - Workspace ID: Define your workspace using the `BIRD_WORKSPACE_ID` environment variable.
 - Channel IDs: Specify channel IDs (e.g., SMS, WhatsApp, Email) for notifications in your .env file:
     ```env
+    BIRD_ACCESS_KEY={your-bird-access-key}
     BIRD_SMS_CHANNEL_ID={your-sms-channel-id}
-    BIRD_WHATSAPP_CHANNEL_ID={your-whatsapp-channel-id}
-    BIRD_EMAIL_CHANNEL_ID={your-email-channel-id}
     ```
 For detailed configuration options, refer to the comments within the config/bird.php file.
 
@@ -88,8 +87,6 @@ To be able to retrieve the contacts, make sure you have specified your `BIRD_WOR
 use Media101\Bird\Services\ContactService;
 
 $birdContacts = app(new ContactService())->index(limit: 20, reverse: true);
-
-dd($birdContacts);
 ```
 
 Parameters:
@@ -105,8 +102,6 @@ You can also retrieve a single contact using the `show()` method. This allows yo
 use Media101\Bird\Services\ContactService;
 
 $birdContact = app(new ContactService())->show('bird-contact-id-123');
-
-dd($birdContact);
 ```
 
 Parameters:
@@ -128,8 +123,6 @@ $contact = (new Contact())
     ->emailAdress('johndoe@mail.com');
 
 $response = (new ContactService())->createOrUpdate($contact, IdentifierKey::PHONE_NUMBER);
-
-dd($response);
 ```
 
 Parameters:
