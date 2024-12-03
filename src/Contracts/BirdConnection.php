@@ -61,9 +61,9 @@ trait BirdConnection
      * @throws InvalidParameterException
      * @throws ConnectionException
      */
-    protected function birdPostRequest(string $url, ?array $params = null): PromiseInterface | Response
+    protected function birdRequest(string $url, ?array $params = null, string $method = 'post'): PromiseInterface | Response
     {
         return Http::withHeaders($this->headers())
-            ->post($url, $params);
+            ->{$method}($url, $params);
     }
 }

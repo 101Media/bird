@@ -50,7 +50,7 @@ class SMSChannel implements IsNotificationChannel
         /** @var SMSMessage $message */
         $message = $this->getMessage($notification);
 
-        $response = $this->birdPostRequest($this->channelEndpoint(), $message->toArray());
+        $response = $this->birdRequest($this->channelEndpoint(), $message->toArray());
 
         if (! $response->accepted()) {
             throw NotificationNotSent::notificationType(

@@ -30,7 +30,7 @@ class EmailChannel implements IsNotificationChannel
     {
         $message = $this->getMessage($notification);
 
-        $response = $this->birdPostRequest($this->channelEndpoint(), $message->toArray());
+        $response = $this->birdRequest($this->channelEndpoint(), $message->toArray());
 
         if (! $response->accepted()) {
             throw NotificationNotSent::notificationType(

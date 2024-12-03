@@ -28,7 +28,7 @@ BIRD_WORKSPACE_ID={--your-workspace-id--}
 BIRD_SMS_CHANNEL_ID={--your-sms-channel-id--}
 ```
 
-All the configuration keys are available in `config/bird.php`
+All the configuration keys are available in `config/bird.php`.
 
 
 ## Usage
