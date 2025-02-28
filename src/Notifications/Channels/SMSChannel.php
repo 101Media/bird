@@ -35,7 +35,7 @@ class SMSChannel implements IsNotificationChannel
             throw new \InvalidArgumentException('Notification does not implement toSMS method');
         }
 
-        return $notification->toSMS($notification);
+        return $notification->toSMS($notifiable, $notification);
     }
 
     /**
