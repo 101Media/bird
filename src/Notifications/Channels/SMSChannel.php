@@ -29,7 +29,7 @@ class SMSChannel implements IsNotificationChannel
         return $this->endpoint("channels/$channelID/messages");
     }
 
-    public function getMessage(Notification $notification)
+    public function getMessage(mixed $notifiable, Notification $notification): mixed
     {
         if (! method_exists($notification, 'toSMS')) {
             throw new \InvalidArgumentException('Notification does not implement toSMS method');
@@ -48,7 +48,7 @@ class SMSChannel implements IsNotificationChannel
     public function send(mixed $notifiable, Notification $notification): void
     {
         /** @var SMSMessage $message */
-        $message = $this->getMessage($notification);
+        $message = $this->getMessage($notifiable, $notification);
 
         $response = $this->birdRequest($this->channelEndpoint(), $message->toArray());
 

@@ -28,7 +28,6 @@ abstract class Message
     public function addContact(Contact $contact, IdentifierKey $identifierKey): static
     {
         $this->contacts[] = [
-            'displayName'     => $contact->getDisplayName(),
             'identifierKey'   => $identifierKey->value,
             'identifierValue' => $identifierKey === IdentifierKey::PHONE_NUMBER
                 ? $contact->getPhoneNumber()
