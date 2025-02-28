@@ -2,12 +2,12 @@
 
 All notable changes to `bird` will be documented in this file.
 
-## [2.0.2] - 2024-12-13
+## [2.0.2] - 2025-02-28
 
 ### Changed
 - Updated documentation.
   
-## [2.0.1] - 2024-12-13
+## [2.0.1] - 2025-02-28
 
 ### Changed
 - Added notifiable to the sender of sms channel.
