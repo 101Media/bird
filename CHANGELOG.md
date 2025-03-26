@@ -2,6 +2,11 @@
 
 All notable changes to `bird` will be documented in this file.
 
+## [2.0.2] - 2025-03-26
+
+### Changed
+- Updated composer packages.
+
 ## [2.0.2] - 2024-12-13
 
 ### Changed
