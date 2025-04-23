@@ -2,6 +2,12 @@
 
 All notable changes to `bird` will be documented in this file.
 
+## [2.0.4] - 2025-04-23
+
+### Bug fixes
+
+- Fixed contact service not returning the right type.
+
 ## [2.0.3] - 2025-03-26
 
 ### Changed
