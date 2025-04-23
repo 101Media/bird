@@ -44,7 +44,7 @@ This package is designed to make communication between [Laravel](https://laravel
 ### Prerequisites
 Before installing this package, ensure your system meets the following requirements:
 - **PHP**: Version `^8.3`
-- **Laravel**: Version `^10.0` or `^11.0`
+- **Laravel**: Version `^10.0`, `^11.0`, `^12.0`
 - **Bird Account**
 
 ### Step-by-Step Installation

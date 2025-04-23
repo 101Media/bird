@@ -22,14 +22,14 @@ class ContactService
      * @param int $limit The number of contacts to retrieve. Default is 10.
      * @param bool $reverse Whether to retrieve contacts in reverse order. Default is false.
      * @param string $nextPageToken The token for the next page of results. Default is an empty string.
-     * @return PromiseInterface|Response|null The retrieved contacts, or null on failure.
+     * @return array The retrieved contacts, or null on failure.
      * @throws InvalidParameterException|ConnectionException
      */
     public function index(
         int     $limit = 10,
         bool    $reverse = false,
         string  $nextPageToken = ''
-    ): PromiseInterface | Response | null {
+    ): array {
         $endpoint = $this->endpoint('contacts');
 
         $query = [
@@ -42,9 +42,13 @@ class ContactService
     }
 
     /**
+     * Get a contact by ID.
+     *
+     * @param string $contactId
+     * @return array
      * @throws InvalidParameterException
      */
-    public function show(string $contactId)
+    public function show(string $contactId): array
     {
         $endpoint = $this->endpoint("contacts/$contactId");
 
@@ -53,7 +57,7 @@ class ContactService
         } catch (ConnectionException $e) {
             Log::info($e->getMessage());
 
-            $res = null;
+            $res = [];
         }
 
         return $res;
@@ -64,10 +68,10 @@ class ContactService
      *
      * @param Contact $contact The contact you are creating or updating.
      * @param IdentifierKey $identifierKey How to identify the contact in Bird.
-     * @return PromiseInterface | Response | null The response from the API, or null on failure.
+     * @return array The response from the API, or null on failure.
      * @throws InvalidParameterException
      */
-    public function createOrUpdate(Contact $contact, IdentifierKey $identifierKey): PromiseInterface | Response | null
+    public function createOrUpdate(Contact $contact, IdentifierKey $identifierKey): array
     {
         $endpoint = $this->getIdentifyEndpoint($contact, $identifierKey);
 
@@ -76,7 +80,7 @@ class ContactService
         } catch (ConnectionException $e) {
             Log::info($e->getMessage());
 
-            $res = null;
+            $res = [];
         }
 
         return $res;
@@ -86,17 +90,17 @@ class ContactService
      * Delete a contact in Bird.
      *
      * @param string $contactId
-     * @return array|bool The response from the API, or true if deletion was successful.
+     * @return bool The response from the API, or true if deletion was successful.
      * @throws InvalidParameterException
      */
-    public function delete(string $contactId): array | bool
+    public function delete(string $contactId): bool
     {
         $endpoint = $this->endpoint("contacts/$contactId");
 
         try {
             $res = $this->birdRequest($endpoint, null, 'delete');
         } catch (ConnectionException $e) {
-            $res = null;
+            $res = false;
         }
 
         if ($res->status() !== 204) {
