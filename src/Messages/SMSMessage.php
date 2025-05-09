@@ -1,6 +1,6 @@
 <?php
 
-namespace Media101\Bird\Models\Messages;
+namespace Media101\Bird\Messages;
 
 use Media101\Bird\Concerns\IsBirdMessage;
 use Media101\Bird\Enums\ChannelType;

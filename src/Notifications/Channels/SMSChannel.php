@@ -9,7 +9,7 @@ use Media101\Bird\Concerns\IsNotificationChannel;
 use Media101\Bird\Contracts\BirdConnection;
 use Media101\Bird\Exceptions\InvalidParameterException;
 use Media101\Bird\Exceptions\NotificationNotSent;
-use Media101\Bird\Models\Messages\SMSMessage;
+use Media101\Bird\Messages\SMSMessage;
 
 class SMSChannel implements IsNotificationChannel
 {

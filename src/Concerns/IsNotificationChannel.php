@@ -3,7 +3,6 @@
 namespace Media101\Bird\Concerns;
 
 use Illuminate\Notifications\Notification;
-use Media101\Bird\Models\Messages\SMSMessage;
 
 interface IsNotificationChannel
 {

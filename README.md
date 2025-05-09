@@ -207,9 +207,7 @@ You need to configure an SMS channel before you can send SMS notifications.
 Define a custom notification class implementing the `toSMS` method.
 
 ```php
-use Illuminate\Notifications\Notification;
-use Media101\Bird\Models\Messages\SMSMessage;
-use Media101\Bird\Notifications\Channels\SMSChannel;
+use Illuminate\Notifications\Notification;use Media101\Bird\Messages\SMSMessage;use Media101\Bird\Notifications\Channels\SMSChannel;
 
 class OrderNotification extends Notification
 {
