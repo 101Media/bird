@@ -231,8 +231,67 @@ class OrderNotification extends Notification
 }
 ```
 
+
 #### Sending the Notification
 You can send the notification using Laravel's `Notification` facade or the `notify` method.
+
+## WhatsApp
+
+### config
+In the `bird.php` config file you'll see `templates` array and in there the empty `whatsapp` key.\
+Follow the example below to add the keys belonging to your template.\
+Recommended way  is to place the keys in your .env
+
+```php
+
+'whatsapp' => [
+    'foo_template' => [
+        'template_project_id' => `template_project_id`,
+        'template_version' => `template_version`,
+        'template_locale' => `template_locale`,
+    ],
+]
+```
+
+### usage
+To send a message through WhatsApp create you own Notification class.\
+That should then use our `WhatsappMessage` class. Example below
+```php
+<?php
+
+namespace App\Notifications;
+
+use Boilerplate\Notifications\BaseNotification;
+use Media101\Bird\Models\Messages\WhatsappMessage;
+use Media101\Bird\Notifications\Channels\WhatsappChannel;
+
+class WhatsappNotification extends BaseNotification
+{
+    public function __construct(
+        public string $content
+    )
+    {
+        $this->setChannels([
+            WhatsappChannel::class
+        ]);
+    }
+
+    public function toWhatsapp($notifiable): WhatsappMessage {
+        $message = new WhatsappMessage(
+            config('bird.templates.whatsapp.foo_message.template_project_id'),
+            config('bird.templates.whatsapp.foo_message.template_version'),
+            config('bird.templates.whatsapp.foo_message.template_locale'),
+            receiver: '+31'.$notifiable->phone_number,
+            templateVariables: [
+                'variables' => `set in template`
+                ]
+        );
+        return $message;
+    }
+}
+
+```
+
 
 ```php
 use Illuminate\Support\Facades\Notification;
